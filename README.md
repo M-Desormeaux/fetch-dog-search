@@ -16,4 +16,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Deployed On Vercel
 
-To see the application in action, please visit https://fetch-dog-search.vercel.app/
+To see the application in action, please visit [https://fetch-dog-search-ten.vercel.app/](https://fetch-dog-search-ten.vercel.app/)
