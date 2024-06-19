@@ -7,7 +7,7 @@ export default function Home() {
   const isAuth = false;
 
   return (
-    <div className="flex h-full flex-col gap-3 bg-white p-5">
+    <div className="flex h-full flex-col gap-3 bg-white px-4 py-12">
       <section id="hero" className="flex h-1/2 flex-col gap-4 py-5">
         {!isAuth && (
           <span className="rounded border border-orange-300 bg-orange-100 p-1 text-center text-sm text-orange-600">
