@@ -9,6 +9,7 @@ export const postLogIn = async (args: { name: string; email: string }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(args),
+    credentials: "include",
   });
 
   console.log(response, response.ok, response);

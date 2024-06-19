@@ -1,4 +1,6 @@
-import { postLogIn } from "@/endpoints";
+"use server";
+
+import { postLogIn } from "@/services/postLogIn";
 import { redirect } from "next/navigation";
 
 export const handleSubmit = async (formData: FormData) => {
@@ -14,7 +16,7 @@ export const handleSubmit = async (formData: FormData) => {
 
   switch (true) {
     case Boolean(name) && Boolean(email):
-      const status = await postLogIn(name, email);
+      const status = await postLogIn({ name, email });
       if (!status) redirect("/login?error=fail");
       if (status) redirect("/");
       break;
