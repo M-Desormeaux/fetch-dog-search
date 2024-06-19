@@ -1,13 +1,16 @@
-"use client";
-
 // json data for mock testimonials
 import testimonials from "@/local_data/testimonials.json";
+import { getIsAuth } from "@/utils";
+import { cookies } from "next/headers";
 
-export default function Home() {
-  const isAuth = false;
+export default async function Home() {
+  const isAuth = getIsAuth();
+
+  const authCookie = cookies().get("fetch-access-token");
 
   return (
     <div className="flex h-full flex-col gap-3 bg-white px-4 py-12">
+      <div>{JSON.stringify(authCookie)}</div>
       <section id="hero" className="flex h-1/2 flex-col gap-4 py-5">
         {!isAuth && (
           <span className="rounded border border-orange-300 bg-orange-100 p-1 text-center text-sm text-orange-600">
