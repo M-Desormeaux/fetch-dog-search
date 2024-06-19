@@ -18,12 +18,12 @@ export const handleSubmit = async (formData: FormData) => {
     case Boolean(name) && Boolean(email):
       const status = await postLogIn({ name, email });
       if (!status) redirect("/login?error=fail");
-      if (status) redirect("/");
+      if (status) redirect("/search");
       break;
     case !Boolean(name) && Boolean(email):
       redirect(`/login?error=name&email=${email}`);
     case Boolean(name) && !Boolean(email):
-      redirect("/login?error=email&name=${name}");
+      redirect(`/login?error=email&name=${name}`);
     case !Boolean(name) && !Boolean(email):
       redirect("/login?error=joke");
     default:
