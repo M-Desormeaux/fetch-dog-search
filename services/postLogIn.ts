@@ -5,11 +5,11 @@ export const postLogIn = async (args: { name: string; email: string }) => {
 
   const response = await fetch(url + "/auth/login", {
     method: "POST",
+    body: JSON.stringify(args),
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(args),
-    credentials: "include",
   });
 
   console.log(response, response.ok, response);
@@ -18,6 +18,7 @@ export const postLogIn = async (args: { name: string; email: string }) => {
     return false;
   }
 
+  // Some checks for if the cookie is there for quick debugging.
   // Access the `Set-Cookie` header from the response (server-side)
   const setCookieHeader = response.headers.get("set-cookie");
 
@@ -26,13 +27,15 @@ export const postLogIn = async (args: { name: string; email: string }) => {
     console.log("Set-Cookie Header:", setCookieHeader);
 
     // Optional: Parse the specific cookie value if needed
-    const cookies = setCookieHeader.split(";").map((cookie) => cookie.trim());
-    const specificCookie = cookies.find((cookie) =>
+    const cookiesHeaders = setCookieHeader
+      .split(";")
+      .map((cookie) => cookie.trim());
+    const specificCookie = cookiesHeaders.find((cookie) =>
       cookie.startsWith("Secure, fetch-access-token="),
     );
 
     if (specificCookie) {
-      console.log("Specific Cookie:", specificCookie);
+      console.log("\n\nSpecific Cookie:", specificCookie, "\n\n");
     } else {
       console.log("Specific cookie not found");
     }
