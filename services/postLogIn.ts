@@ -34,6 +34,7 @@ export const postLogIn = async (args: { name: string; email: string }) => {
     cookies().set("fetch-access-token", realCookie, {
       httpOnly: true,
       secure: true,
+      maxAge: 3600,
     });
 
     if (specificCookie) {
