@@ -15,7 +15,7 @@ export const getDogBreeds = async () => {
     },
   });
 
-  if (!response.ok) redirect("/login?error=fail");
+  // if (!response.ok) redirect("/login?error=fail");
 
-  return response.ok;
+  return response.status;
 };

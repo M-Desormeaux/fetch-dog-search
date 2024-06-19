@@ -6,7 +6,7 @@ export const postLogIn = async (args: { name: string; email: string }) => {
   const response = await fetch(url + "/auth/login", {
     method: "POST",
     body: JSON.stringify(args),
-    credentials: "include",
+    // credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
