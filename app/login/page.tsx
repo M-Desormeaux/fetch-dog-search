@@ -52,7 +52,7 @@ export default function Login() {
             Name
           </label>
           <input
-            defaultValue={name ?? ""}
+            defaultValue={name ?? "Mike"}
             type="text"
             name="name"
             id="name"
@@ -65,7 +65,7 @@ export default function Login() {
             eMail
           </label>
           <input
-            defaultValue={email ?? ""}
+            defaultValue={email ?? "email@website.com"}
             type="email"
             name="email"
             id="email"
