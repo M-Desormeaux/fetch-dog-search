@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export const LogInButton = (props: { isAuth: boolean }) => {
+export const AuthButton = (props: { isAuth: boolean }) => {
   // get pathname to hide button on '/login'
   const pathname = usePathname().split("/");
   if (pathname[1] === "login") return null;
@@ -14,7 +14,7 @@ export const LogInButton = (props: { isAuth: boolean }) => {
 
   return (
     <Link
-      href="/login"
+      href={isAuth ? "/logout" : "/login"}
       className={
         "drop-shadow-sm hover:drop-shadow-md active:drop-shadow h-min rounded border bg-gray-50 px-3 py-2 font-semibold " +
         color

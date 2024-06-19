@@ -1,4 +1,4 @@
-import { LogInButton } from "./LogInButton";
+import { AuthButton } from "./AuthButton";
 import { getIsAuth } from "@/utils";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ export const Nav = async () => {
       >
         Home
       </Link>
-      <LogInButton isAuth={isAuth} />
+      <AuthButton isAuth={isAuth} />
     </nav>
   );
 };
