@@ -1,6 +1,4 @@
-"use server";
-
-import { postLogIn } from "@/services/postLogIn";
+import { postLogIn } from "@/endpoints";
 import { redirect } from "next/navigation";
 
 export const handleSubmit = async (formData: FormData) => {
@@ -16,7 +14,7 @@ export const handleSubmit = async (formData: FormData) => {
 
   switch (true) {
     case Boolean(name) && Boolean(email):
-      const status = await postLogIn({ name, email });
+      const status = await postLogIn(name, email);
       if (!status) redirect("/login?error=fail");
       if (status) redirect("/");
       break;
@@ -29,12 +27,6 @@ export const handleSubmit = async (formData: FormData) => {
     default:
       redirect("/login?error=secret");
   }
-
-  if (!rawFormData.name) redirect("/login?error=name");
-  if (!rawFormData.email)
-    if (rawFormData.name && rawFormData.email) {
-      postLogIn(rawFormData as { name: string; email: string });
-    }
 
   console.log(rawFormData);
 };

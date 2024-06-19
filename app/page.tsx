@@ -1,17 +1,10 @@
+"use client";
+
 // json data for mock testimonials
 import testimonials from "@/local_data/testimonials.json";
-import { getIsAuth } from "@/utils";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Bark Avenue Orphanage | Home",
-  description: "Adopting smiles, One paw at a time. &#x1F43E;",
-};
-
-export default async function Home() {
-  const isAuth = await getIsAuth();
-
-  console.log("auth", isAuth);
+export default function Home() {
+  const isAuth = false;
 
   return (
     <div className="flex h-full flex-col gap-3 bg-white p-5">
