@@ -1,16 +1,16 @@
-// "use client";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export const getDogBreeds = async () => {
+export const postDogsFromIds = async (ids: string[]) => {
   const url = "https://frontend-take-home-service.fetch.com";
 
   const cookieStore = cookies().toString();
 
-  const response = await fetch(url + "/dogs/breeds", {
-    method: "GET",
+  const response = await fetch(url + "/dogs", {
+    method: "POST",
     credentials: "include",
     cache: "no-store",
+    body: JSON.stringify(ids),
     headers: {
       "Content-Type": "application/json",
       Cookie: cookieStore,
