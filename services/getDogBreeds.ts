@@ -6,12 +6,14 @@ import { cookies } from "next/headers";
 export const getDogBreeds = async () => {
   const url = await getBaseURL();
 
-  const response = await fetch(url + "/dogs/breeds", {
+  const cookieStore = cookies().toString();
+
+  const response = await fetch(url + "/dogs/search?size=10", {
     method: "GET",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Cookie: cookies().toString(),
+      Cookie: cookieStore,
     },
   });
 

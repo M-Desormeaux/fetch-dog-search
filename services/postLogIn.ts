@@ -1,7 +1,10 @@
 import { getBaseURL } from "@/utils";
+import { cookies } from "next/headers";
 
 export const postLogIn = async (args: { name: string; email: string }) => {
   const url = await getBaseURL();
+
+  const cookieStore = cookies().toString();
 
   const response = await fetch(url + "/auth/login", {
     method: "POST",
@@ -9,10 +12,9 @@ export const postLogIn = async (args: { name: string; email: string }) => {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      Cookie: cookieStore,
     },
   });
-
-  console.log(response, response.ok, response);
 
   if (!response.ok) {
     return false;
@@ -23,10 +25,7 @@ export const postLogIn = async (args: { name: string; email: string }) => {
   const setCookieHeader = response.headers.get("set-cookie");
 
   if (setCookieHeader) {
-    // Log the `Set-Cookie` header
-    console.log("Set-Cookie Header:", setCookieHeader);
-
-    // Optional: Parse the specific cookie value if needed
+    // Parse the specific cookie value if needed
     const cookiesHeaders = setCookieHeader
       .split(";")
       .map((cookie) => cookie.trim());
@@ -34,8 +33,16 @@ export const postLogIn = async (args: { name: string; email: string }) => {
       cookie.startsWith("Secure, fetch-access-token="),
     );
 
+    // grab and set cookie manually since for some reason credentials and axios do not work as well with next 14
+    const realCookie = specificCookie?.split("=")[1] ?? "";
+
+    cookies().set("fetch-access-token", realCookie, {
+      httpOnly: true,
+      secure: true,
+    });
+
     if (specificCookie) {
-      console.log("\n\nSpecific Cookie:", specificCookie, "\n\n");
+      console.log("\n\nSpecific Cookie:", realCookie, "\n\n");
     } else {
       console.log("Specific cookie not found");
     }

@@ -29,6 +29,4 @@ export const handleSubmit = async (formData: FormData) => {
     default:
       redirect("/login?error=secret");
   }
-
-  console.log(rawFormData);
 };
