@@ -1,7 +1,11 @@
+"use client";
+
 import { getDogBreeds } from "@/services/getDogBreeds";
 
-export default async function Search() {
-  const breeds = await getDogBreeds();
+export default function Search() {
+  const breeds = getDogBreeds();
+
+  console.log(breeds);
 
   return (
     <div className="flex h-full flex-col gap-3 bg-white px-4 py-12">
