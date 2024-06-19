@@ -1,28 +1,26 @@
+"use server";
+
 import { getBaseURL } from "@/utils";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function POST() {
+export async function GET() {
   const url = await getBaseURL();
 
   const cookieStore = cookies();
 
-  const response = await fetch(url + "/auth/login", {
+  const response = await fetch(url + "/auth/logout", {
     method: "POST",
     credentials: "include",
+    cache: "no-store",
     headers: {
       "Content-Type": "application/json",
       Cookie: cookieStore.toString(),
     },
   });
+  cookieStore.delete("fetch-access-token");
 
-  if (!response.ok) redirect("/search?msg=stuck");
+  // if (!response.ok) redirect("/search?msg=stuck");
 
-  cookieStore.set("fetch-access-token", "", {
-    expires: new Date(-1),
-    httpOnly: true,
-    secure: true,
-  });
-
-  redirect("/?msg");
+  redirect("/?msg=bye");
 }
