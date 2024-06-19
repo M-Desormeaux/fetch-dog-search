@@ -1,5 +1,4 @@
-"use client";
-
+// "use client";
 import { redirect } from "next/navigation";
 
 export const getDogBreeds = async () => {
@@ -7,7 +6,7 @@ export const getDogBreeds = async () => {
 
   // const cookieStore = cookies().toString();
 
-  const response = await fetch(url + "/dogs/search?size=10", {
+  const response = await fetch(url + "/dogs/breeds", {
     method: "GET",
     credentials: "include",
     headers: {
@@ -16,7 +15,7 @@ export const getDogBreeds = async () => {
     },
   });
 
-  // if (!response.ok) redirect("/login?error=fail");
+  if (!response.ok) redirect("/login?error=fail");
 
   return response.ok;
 };

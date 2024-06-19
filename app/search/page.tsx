@@ -1,9 +1,8 @@
-"use client";
-
+// "use client";
 import { getDogBreeds } from "@/services/getDogBreeds";
 
-export default function Search() {
-  const breeds = getDogBreeds();
+export default async function Search() {
+  const breeds = await getDogBreeds();
 
   console.log(breeds);
 

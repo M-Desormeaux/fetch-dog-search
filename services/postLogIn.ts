@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 export const postLogIn = async (args: { name: string; email: string }) => {
   const url = "https://frontend-take-home-service.fetch.com";
