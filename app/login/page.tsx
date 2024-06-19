@@ -40,9 +40,9 @@ export default function Login() {
       )}
 
       {error === "secret" && (
-        <div className="rounded border border-green-300 bg-green-100 p-1 text-center text-sm text-green-600 drop-shadow">
-          I don&apos;t know how you made it to this screen but you
-          shouldn&apos;t be here.
+        <div className="rounded border border-pink-300 bg-pink-100 p-1 text-center text-sm text-pink-600 drop-shadow">
+          &#x2728; I don&apos;t know how you made it to this screen but you
+          shouldn&apos;t be here. &#x2728;
         </div>
       )}
 
